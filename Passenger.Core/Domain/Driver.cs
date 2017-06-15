@@ -16,6 +16,8 @@ namespace Passenger.Core.Domain
        
         public Guid UserId { get; protected set; }
         
+        public Guid Email { get; protected set; }
+        
         public Vehicle Vehicle { get; protected set; }
 
         public IEnumerable<Route> Routes { get; protected set; }
