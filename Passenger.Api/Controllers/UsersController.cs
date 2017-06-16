@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands.Users;
@@ -19,12 +16,9 @@ namespace Passenger.Api.Controllers
         }
 
         [HttpGet("{email}")]
-        public UserDto Get(string email) => this._userService.Get(email);
+        public async Task<UserDto> Get(string email) => await this._userService.GetAsync(email);
 
         [HttpPost("")]
-        public void Post([FromBody]CreateUser createUser)
-        {
-            this._userService.Register(createUser.Email, createUser.Username, createUser.Password);
-        }
+        public async Task Post([FromBody]CreateUser createUser) => await this._userService.RegisterAsync(createUser.Email, createUser.Username, createUser.Password);
     }
 }
