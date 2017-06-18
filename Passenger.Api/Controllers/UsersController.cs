@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands.Users;
-using Passenger.Infrastructure.DTO;
 using Passenger.Infrastructure.Services;
 
 namespace Passenger.Api.Controllers
@@ -10,6 +9,7 @@ namespace Passenger.Api.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
+        
         public UsersController(IUserService userService)
         {
             this._userService = userService;
@@ -19,8 +19,7 @@ namespace Passenger.Api.Controllers
         public async Task<IActionResult> Get(string email)
         {
             var user = await _userService.GetAsync(email);
-            
-            if (user == null)
+            if(user == null)
             {
                 return NotFound();
             }
@@ -28,12 +27,12 @@ namespace Passenger.Api.Controllers
             return Json(user);
         }
 
-        [HttpPost("")]
-        public async Task<IActionResult> Post([FromBody] CreateUser createUser)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]CreateUser request)
         {
-            await this._userService.RegisterAsync(createUser.Email, createUser.Username, createUser.Password);
+            await this._userService.RegisterAsync(request.Email, request.Username, request.Password);
 
-            return Created($"users/Prequest.Email", new object());
+            return Created($"users/{request.Email}", new object());
         }
     }
 }

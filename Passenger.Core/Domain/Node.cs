@@ -6,13 +6,9 @@ namespace Passenger.Core.Domain
     public class Node
     {
         private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
-        
         public string Address { get; protected set; }
-        
         public double Longitude { get; protected set; }
-        
         public double Latitude { get; protected set; }
-        
         public DateTime UpdatedAt { get; protected set; }
 
         protected Node()
@@ -43,7 +39,7 @@ namespace Passenger.Core.Domain
             {
                 throw new Exception("Longitude must be a number.");
             }
-            if (Longitude == longitude) 
+            if (this.Longitude == longitude) 
             {
                 return;
             }

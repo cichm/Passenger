@@ -6,23 +6,15 @@ namespace Passenger.Core.Domain
     public class User
     {
         private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
-        
         public Guid Id { get; protected set; }
-        
         public string Email { get; protected set; }
-        
         public string Password { get; protected set; }
-        
         public string Salt { get; protected set; }
-        
         public string Username { get; protected set; }
-        
         public string FullName { get; protected set; }
-
-        public DateTime UpdateAt { get; set; }
-        
         public DateTime CreatedAt { get; protected set; }
-
+        public DateTime UpdatedAt { get; protected set; }
+    
         protected User()
         {
         }
@@ -31,23 +23,22 @@ namespace Passenger.Core.Domain
             string password, string salt)
         {
             this.Id = Guid.NewGuid();
-            
             this.Email = email.ToLowerInvariant();
             this.Username = username;
             this.Password = password;
             this.Salt = salt;
             this.CreatedAt = DateTime.UtcNow;
         }
-        
-        public void SetUsername(string userName)
+
+        public void SetUsername(string username) 
         {
-            if (!NameRegex.IsMatch(userName))
+            if(!NameRegex.IsMatch(username))
             {
                 throw new Exception("Username is invalid.");
             }
 
-            this.Username = userName.ToLowerInvariant();
-            this.UpdateAt = DateTime.UtcNow;
+            this.Username = username.ToLowerInvariant();
+            this.UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetEmail(string email) 
@@ -62,7 +53,7 @@ namespace Passenger.Core.Domain
             }
 
             this.Email = email.ToLowerInvariant();
-            this.UpdateAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetPassword(string password)
@@ -85,7 +76,7 @@ namespace Passenger.Core.Domain
             }
 
             this.Password = password;
-            this.UpdateAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.UtcNow;
         }
     }
 }
