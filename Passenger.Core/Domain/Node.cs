@@ -17,9 +17,9 @@ namespace Passenger.Core.Domain
 
         protected Node(string address, double longitude, double latitude) 
         {
-            SetAdress(address);
-            SetLongitude(longitude);
-            SetLatitude(latitude);
+            this.SetAdress(address);
+            this.SetLongitude(longitude);
+            this.SetLatitude(latitude);
         }
 
         public void SetAdress(string address) 
@@ -39,7 +39,7 @@ namespace Passenger.Core.Domain
             {
                 throw new Exception("Longitude must be a number.");
             }
-            if (this.Longitude == longitude) 
+            if (Longitude == longitude) 
             {
                 return;
             }

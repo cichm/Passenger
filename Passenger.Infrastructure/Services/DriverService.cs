@@ -9,7 +9,6 @@ namespace Passenger.Infrastructure.Services
 {
     public class DriverService : IDriverService
     {
-        
         private readonly IDriverRepository _driverRepository;
         private readonly IMapper _mapper;
 
@@ -23,7 +22,7 @@ namespace Passenger.Infrastructure.Services
         {
             var driver = await _driverRepository.GetAsync(userId);
             
-            return this._mapper.Map<Driver,DriverDto>(driver);
+            return _mapper.Map<Driver,DriverDto>(driver);
         }
     }
 }
