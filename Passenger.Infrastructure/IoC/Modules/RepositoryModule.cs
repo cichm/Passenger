@@ -11,11 +11,11 @@ namespace Passenger.Infrastructure.IoC.Modules
             var assembly = typeof(RepositoryModule)
                 .GetTypeInfo()
                 .Assembly;
-
+            
             builder.RegisterAssemblyTypes(assembly)
-                   .Where(x => x.IsAssignableTo<IRepository>())
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
+                .Where(x => x.IsAssignableTo<IRepository>())
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
         }
     }
 }

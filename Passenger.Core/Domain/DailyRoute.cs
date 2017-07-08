@@ -37,6 +37,6 @@ namespace Passenger.Core.Domain
         } 
 
         private PassengerNode GetPassengerNode(Passenger passenger)
-            => _passengerNodes.SingleOrDefault(x => x.Passenger.UserId == passenger.UserId);
+            => this._passengerNodes.SingleOrDefault(x => x.Passenger.UserId == passenger.UserId);
     }
 }

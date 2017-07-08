@@ -1,3 +1,5 @@
+using System;
+
 namespace Passenger.Core.Domain
 {
     public class PassengerNode

@@ -20,7 +20,7 @@ namespace Passenger.Infrastructure.Commands
                 throw new ArgumentNullException(nameof(command),
                     $"Command: '{typeof(T).Name}' can not be null.");
             }
-            var handler = _context.Resolve<ICommandHandler<T>>();
+            var handler = this._context.Resolve<ICommandHandler<T>>();
             await handler.HandleAsync(command);
         }
     }

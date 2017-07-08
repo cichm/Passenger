@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Users;
@@ -16,10 +17,11 @@ namespace Passenger.Api.Controllers
             this._userService = userService;
         }
 
+        [Authorize(Policy = "admin")]
         [HttpGet("{email}")]
         public async Task<IActionResult> Get(string email)
         {
-            var user = await _userService.GetAsync(email);
+            var user = await this._userService.GetAsync(email);
             if(user == null)
             {
                 return NotFound();

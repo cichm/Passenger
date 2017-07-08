@@ -22,7 +22,7 @@ namespace Passenger.Infrastructure.Services
         {
             var driver = await _driverRepository.GetAsync(userId);
             
-            return _mapper.Map<Driver,DriverDto>(driver);
+            return this._mapper.Map<Driver,DriverDto>(driver);
         }
     }
 }

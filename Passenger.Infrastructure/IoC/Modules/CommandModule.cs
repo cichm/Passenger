@@ -11,11 +11,11 @@ namespace Passenger.Infrastructure.IoC.Modules
             var assembly = typeof(CommandModule)
                 .GetTypeInfo()
                 .Assembly;
-
+            
             builder.RegisterAssemblyTypes(assembly)
-                   .AsClosedTypesOf(typeof(ICommandHandler<>))
-                   .InstancePerLifetimeScope();
-
+                .AsClosedTypesOf(typeof(ICommandHandler<>))
+                .InstancePerLifetimeScope();
+            
             builder.RegisterType<CommandDispatcher>()
                 .As<ICommandDispatcher>()
                 .InstancePerLifetimeScope();
