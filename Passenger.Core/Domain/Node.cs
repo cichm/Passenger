@@ -1,11 +1,9 @@
 using System;
-using System.Text.RegularExpressions;
 
 namespace Passenger.Core.Domain
 {
     public class Node
     {
-        private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
         public string Address { get; protected set; }
         public double Longitude { get; protected set; }
         public double Latitude { get; protected set; }
@@ -17,20 +15,20 @@ namespace Passenger.Core.Domain
 
         protected Node(string address, double longitude, double latitude) 
         {
-            this.SetAdress(address);
-            this.SetLongitude(longitude);
-            this.SetLatitude(latitude);
+            SetAdress(address);
+            SetLongitude(longitude);
+            SetLatitude(latitude);
         }
 
         public void SetAdress(string address) 
         {
-            if(!NameRegex.IsMatch(address))
+            if(string.IsNullOrWhiteSpace(address))
             {
-                throw new Exception("Adress is invalid.");
+                throw new Exception("Adress is empty.");
             }
 
-            this.Address = address;
-            this.UpdatedAt = DateTime.UtcNow;
+            Address = address;
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetLongitude(double longitude) 
@@ -44,8 +42,8 @@ namespace Passenger.Core.Domain
                 return;
             }
 
-            this.Longitude = longitude;
-            this.UpdatedAt = DateTime.UtcNow;
+            Longitude = longitude;
+            UpdatedAt = DateTime.UtcNow;
         }
         
         public void SetLatitude(double latitude) 
@@ -59,8 +57,8 @@ namespace Passenger.Core.Domain
                 return;
             }
 
-            this.Latitude = latitude;
-            this.UpdatedAt = DateTime.UtcNow;
+            Latitude = latitude;
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public static Node Create(string address, double longitude, double latitude)

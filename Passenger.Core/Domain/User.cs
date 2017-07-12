@@ -21,16 +21,16 @@ namespace Passenger.Core.Domain
         {
         }
 
-        public User(string email, string username, 
-            string password, string role, string salt)
+        public User(Guid userId, string email, string username, string role, 
+            string password, string salt)
         {
-            this.Id = Guid.NewGuid();
-            this.Email = email.ToLowerInvariant();
-            this.Username = username;
-            this.Password = password;
-            this.Role = role;
-            this.Salt = salt;
-            this.CreatedAt = DateTime.UtcNow;
+            Id = userId;
+            Email = email.ToLowerInvariant();
+            Username = username;
+            Role = role;
+            Password = password;
+            Salt = salt;
+            CreatedAt = DateTime.UtcNow;
         }
         
         public void SetUserId(string userId)
@@ -48,8 +48,8 @@ namespace Passenger.Core.Domain
                 throw new Exception("Username can not be empty.");
             }
 
-            this.Username = username.ToLowerInvariant();
-            this.UpdatedAt = DateTime.UtcNow;
+            Username = username.ToLowerInvariant();
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetEmail(string email) 
@@ -63,8 +63,8 @@ namespace Passenger.Core.Domain
                 return;
             }
 
-            this.Email = email.ToLowerInvariant();
-            this.UpdatedAt = DateTime.UtcNow;
+            Email = email.ToLowerInvariant();
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetRole(string role)
@@ -72,8 +72,8 @@ namespace Passenger.Core.Domain
             if (Role == role)
             return;
 
-            this.Role = role;
-            this.UpdatedAt = DateTime.UtcNow;
+            Role = role;
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetPassword(string password)
@@ -95,8 +95,8 @@ namespace Passenger.Core.Domain
                 return;
             }
 
-            this.Password = password;
-            this.UpdatedAt = DateTime.UtcNow;
+            Password = password;
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }

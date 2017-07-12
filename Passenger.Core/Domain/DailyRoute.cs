@@ -9,11 +9,15 @@ namespace Passenger.Core.Domain
         private ISet<PassengerNode> _passengerNodes = new HashSet<PassengerNode>();
         public Guid Id { get; protected set; }
         public Route Route { get; protected set; }
-        public IEnumerable<PassengerNode> PassengerNodes => _passengerNodes;
+        public IEnumerable<PassengerNode> PassengerNodes
+        {
+            get { return _passengerNodes; }
+            set { _passengerNodes = new HashSet<PassengerNode>(value); }
+        }
 
         protected DailyRoute()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public void AddPassengerNode(Passenger passenger, Node node)
@@ -23,7 +27,7 @@ namespace Passenger.Core.Domain
             {
                 throw new InvalidOperationException($"Node already exists for passenger: '{passenger.UserId}'.");
             }
-            this._passengerNodes.Add(PassengerNode.Create(passenger, node));
+            _passengerNodes.Add(PassengerNode.Create(passenger, node));
         }
 
         public void RemovePassengerNode(Passenger passenger)
@@ -33,10 +37,10 @@ namespace Passenger.Core.Domain
             {
                 return;
             }
-            this._passengerNodes.Remove(passengerNode);
+            _passengerNodes.Remove(passengerNode);
         } 
 
         private PassengerNode GetPassengerNode(Passenger passenger)
-            => this._passengerNodes.SingleOrDefault(x => x.Passenger.UserId == passenger.UserId);
+            => _passengerNodes.SingleOrDefault(x => x.Passenger.UserId == passenger.UserId);
     }
 }

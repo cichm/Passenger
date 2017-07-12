@@ -13,8 +13,8 @@ namespace Passenger.Core.Domain
 
         protected PassengerNode(Passenger passenger, Node node)
         {
-            this.Passenger = passenger;
-            this.Node = node;
+            Passenger = passenger;
+            Node = node;
         }
 
         public static PassengerNode Create(Passenger passenger, Node node)

@@ -14,9 +14,9 @@ namespace Passenger.Core.Domain
 
         protected Vehicle(string brand, string name, int seats) 
         {
-            this.SetBrand(brand);
-            this.SetName(name);
-            this.SetSeats(seats);
+            SetBrand(brand);
+            SetName(name);
+            SetSeats(seats);
         }
 
         private void SetBrand(string brand)
@@ -29,7 +29,7 @@ namespace Passenger.Core.Domain
             {
                 return;
             }
-            this.Brand = brand;
+            Brand = brand;
         }
 
         private void SetName(string name)
@@ -42,7 +42,7 @@ namespace Passenger.Core.Domain
             {
                 return;
             }
-            this.Name = name;
+            Name = name;
         }
 
         private void SetSeats(int seats)
@@ -62,7 +62,7 @@ namespace Passenger.Core.Domain
             {
                 return;
             }
-            this.Seats = seats;
+            Seats = seats;
         }
 
         public static Vehicle Create(string brand, string name, int seats)

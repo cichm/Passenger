@@ -11,7 +11,7 @@ namespace Passenger.Infrastructure.IoC
 
         public ContainerModule(IConfiguration configuration)
         {
-            this._configuration = configuration;
+            _configuration = configuration;
         }
 
         protected override void Load(ContainerBuilder builder)

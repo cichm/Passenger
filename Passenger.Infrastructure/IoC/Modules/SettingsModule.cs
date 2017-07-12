@@ -11,15 +11,15 @@ namespace Passenger.Infrastructure.IoC.Modules
 
         public SettingsModule(IConfiguration configuration)
         {
-            this._configuration = configuration;
+            _configuration = configuration;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>())
-                .SingleInstance();
+                   .SingleInstance();
             builder.RegisterInstance(_configuration.GetSettings<JwtSettings>())
-                .SingleInstance();                
+                   .SingleInstance();                
         }  
     }
 }
