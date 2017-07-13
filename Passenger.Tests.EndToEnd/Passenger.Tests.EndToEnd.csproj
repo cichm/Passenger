@@ -8,7 +8,8 @@
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="appsettings.json" copyToOutputDirectory="PreserveNewest" />
+    <Content Include="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Passenger.Api/Passenger.Api.csproj" />

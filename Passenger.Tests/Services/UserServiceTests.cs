@@ -7,15 +7,18 @@ using AutoMapper;
 using Passenger.Core.Domain;
 using System;
 
-namespace Passenger.Tests.ServicesmapperMock
+namespace Passenger.Tests.Services
 {
     public class UserServiceTests
     {
+
         [Fact]
         public async Task register_async_should_invoke_add_async_on_repository()
         {
             var userRepositoryMock = new Mock<IUserRepository>();
             var encrypterMock = new Mock<IEncrypter>();
+            encrypterMock.Setup(x => x.GetSalt(It.IsAny<string>())).Returns("hash");
+            encrypterMock.Setup(x => x.GetHash(It.IsAny<string>(),It.IsAny<string>())).Returns("salt"); 
             var mapperMock = new Mock<IMapper>();
 
             var userService = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
@@ -29,6 +32,8 @@ namespace Passenger.Tests.ServicesmapperMock
         {
             var userRepositoryMock = new Mock<IUserRepository>();
             var encrypterMock = new Mock<IEncrypter>();
+            encrypterMock.Setup(x => x.GetSalt(It.IsAny<string>())).Returns("hash");
+            encrypterMock.Setup(x => x.GetHash(It.IsAny<string>(),It.IsAny<string>())).Returns("salt");            
             var mapperMock = new Mock<IMapper>();
 
             var userService = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
@@ -57,6 +62,5 @@ namespace Passenger.Tests.ServicesmapperMock
 
             userRepositoryMock.Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once());
         }
-
     }
 }
