@@ -19,7 +19,7 @@ namespace Passenger.Api.Controllers
 
         public async Task<IActionResult> Get()
         {
-            Logger.Info("AUTKO");
+            Logger.Info("Pojazd");
             var vehicles = await _vehicleProvider.BrowseAsync();
 
             return Json(vehicles);
